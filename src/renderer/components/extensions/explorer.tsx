@@ -109,7 +109,14 @@ const Explorer = ({
       style={{ 'max-height': '50vh', 'overflow-y': 'hidden' }}
     >
       {paths.map(({ name, dir }, ix) => (
-        <RowNormal key={`${name}-${dir}`} active={ix === index}>
+        <RowNormal key={`${name}-${dir}`} active={ix === index}
+          onComponentDidUpdate={(lastProps, nextProps) => {
+            if(nextProps.active) {
+                nextProps.children[0].dom.scrollIntoView({ behavior: 'instant', block: 'nearest' })
+              }
+            }
+          }
+          >
           {dir ? Folder : FiletypeIcon(name)}
 
           <span

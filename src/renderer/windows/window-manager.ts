@@ -123,7 +123,8 @@ export const set = (
   // if (windowPosition && windowExistsAtPosition(wid, row, col)) return invalidWindows.add(gid)
 
   // behavior 2: receive "grid_resize" events (gridId > 1) but no followup "win_pos" events
-  if (winId < 0) return invalidGrids.add(gridId)
+  // TODO (abhishek): this was causing issues with splits. it was removing valid vsplit, split
+  // if (winId < 0) return invalidGrids.add(gridId)
 
   container.appendChild(win.element)
   invalidGrids.delete(gridId)
